@@ -1,6 +1,6 @@
 (ns advent-of-code.day3
   (:gen-class)
-  (:require [clojure.java.io :as io]))
+  (:require [advent-of-code.util :as util]))
 
 (defn password-valid-part1
   ;; in part1, the n-low and n-high represent a min/max number of occurrences per character, respectively
@@ -27,8 +27,7 @@
       (= c \#))))
 
 (defn get-tree-markers []
-  (let [input-text (slurp (io/resource "input_day3"))
-        input-lines (clojure.string/split-lines input-text)]
+  (let [input-lines (util/read-problem-input "input_day3")]
     (map parse-line-to-tree-markers input-lines)))
 
 (defn count-tree-hits [tree-markers move-right move-down]

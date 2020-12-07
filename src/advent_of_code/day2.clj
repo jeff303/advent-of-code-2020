@@ -1,6 +1,6 @@
 (ns advent-of-code.day2
   (:gen-class)
-  (:require [clojure.java.io :as io]))
+  (:require [advent-of-code.util :as util]))
 
 (defn password-valid-part1
   ;; in part1, the n-low and n-high represent a min/max number of occurrences per character, respectively
@@ -22,8 +22,7 @@
         (->> positions (map #(nth password (dec %))) (filter #(= pwchar %)) count)))))
 
 (defn get-requirements-and-passwords []
-  (let [input-text (slurp (io/resource "input_day2"))
-        input-lines (clojure.string/split-lines input-text)
+  (let [input-lines (util/read-problem-input "input_day2")
         parsed-lines (map #(re-matches #"^(\d+)-(\d+) (.): (.*)$" %) input-lines)]
     (for [parsed-line parsed-lines]
       (let [[_ n-low n-high pw-char pw] parsed-line

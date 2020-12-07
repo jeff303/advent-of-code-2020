@@ -1,7 +1,6 @@
 (ns advent-of-code.day4
   (:gen-class)
-  (:require [clojure.java.io :as io]
-            [clojure.string :as str]
+  (:require [advent-of-code.util :as util]
             [clojure.core.reducers :as red]
             [clojure.spec.alpha :as s]
             [clojure.walk :as w]))
@@ -25,8 +24,8 @@
       (partition-by nil? entries))))
 
 (defn parse-passport-entries-from-input []
-  (let [input-text (slurp (io/resource "input_day4"))]
-    (parse-passport-entries-from-lines (str/split-lines input-text))))
+  (let [input-lines (util/read-problem-input "input_day4")]
+    (parse-passport-entries-from-lines input-lines)))
 
 (defn- hacked-valid-passport [passport]
   (let [required-keys ["byr" "iyr" "eyr" "hgt" "hcl" "ecl" "pid"]]
