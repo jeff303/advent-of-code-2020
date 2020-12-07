@@ -22,7 +22,7 @@
         (->> positions (map #(nth password (dec %))) (filter #(= pwchar %)) count)))))
 
 (defn get-requirements-and-passwords []
-  (let [input-lines (util/read-problem-input "input_day2")
+  (let [input-lines (util/read-problem-input-as-lines "input_day2")
         parsed-lines (map #(re-matches #"^(\d+)-(\d+) (.): (.*)$" %) input-lines)]
     (for [parsed-line parsed-lines]
       (let [[_ n-low n-high pw-char pw] parsed-line

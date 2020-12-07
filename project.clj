@@ -7,5 +7,6 @@
                  [org.clojure/math.numeric-tower "0.0.4"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
+             :dev {:resource-paths ["test/resources"]}}
   :plugins [[lein-exec "0.3.7"]])

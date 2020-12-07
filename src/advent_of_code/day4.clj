@@ -24,7 +24,7 @@
       (partition-by nil? entries))))
 
 (defn parse-passport-entries-from-input []
-  (let [input-lines (util/read-problem-input "input_day4")]
+  (let [input-lines (util/read-problem-input-as-lines "input_day4")]
     (parse-passport-entries-from-lines input-lines)))
 
 (defn- hacked-valid-passport [passport]

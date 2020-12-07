@@ -27,7 +27,7 @@
       (= c \#))))
 
 (defn get-tree-markers []
-  (let [input-lines (util/read-problem-input "input_day3")]
+  (let [input-lines (util/read-problem-input-as-lines "input_day3")]
     (map parse-line-to-tree-markers input-lines)))
 
 (defn count-tree-hits [tree-markers move-right move-down]

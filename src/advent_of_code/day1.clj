@@ -20,7 +20,7 @@
 
 
 (defn get-input-nums []
-  (let [input-lines (util/read-problem-input "input_day1")]
+  (let [input-lines (util/read-problem-input-as-lines "input_day1")]
     (sort (map #(Integer/parseInt %) input-lines))))
 
 (defn day1-part1 []

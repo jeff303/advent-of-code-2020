@@ -25,7 +25,7 @@
     (+ (* 8 row-num) col-num)))
 
 (defn day5-part1 []
-  (let [input-lines (util/read-problem-input "input_day5")]
+  (let [input-lines (util/read-problem-input-as-lines "input_day5")]
     (red/reduce max 0 (red/map encoded-line-to-seat-id input-lines))))
 
 (defn find-missing-seat-id [sorted-seat-ids]
@@ -41,7 +41,7 @@
         (recur next-id recur-ids)))))
 
 (defn day5-part2 []
-  (let [input-lines (util/read-problem-input "input_day5")
+  (let [input-lines (util/read-problem-input-as-lines "input_day5")
         sorted-seat-ids (->> input-lines
                              (map encoded-line-to-seat-id)
                              sort)]
