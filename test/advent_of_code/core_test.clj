@@ -40,8 +40,9 @@
 (deftest day6-test
   (testing "day 6 functions"
     (let [test-input-groups (util/read-problem-input-split-by "test_day6_input" #"\n\n")
-          counts-by-group (map day6/count-yes-answers test-input-groups)
+          counts-by-group (map day6/count-union-yes-answers test-input-groups)
           total-count (reduce + counts-by-group)]
       (is (= 11 total-count))))
   (testing "day 6 solutions"
-    (is (= 6778 (day6/day6-part1)))))
+    (is (= 6778 (day6/day6-part1)))
+    (is (= 3406 (day6/day6-part2)))))
