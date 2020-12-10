@@ -7,7 +7,8 @@
             [advent-of-code.day4 :as day4]
             [advent-of-code.day5 :as day5]
             [advent-of-code.day6 :as day6]
-            [advent-of-code.day7 :as day7]))
+            [advent-of-code.day7 :as day7]
+            [advent-of-code.day8 :as day8]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -73,3 +74,14 @@
   (testing "day 7 solutions"
     (is (= 172 (day7/day7-part1)))
     (is (= 39645 (day7/day7-part2)))))
+
+(deftest day8-test
+  (testing "day 8 functions"
+    (let [prog (into [] (day8/parse-inputs-to-program "test_day8_input"))
+          prog-fixed (into [] (day8/parse-inputs-to-program "test_day8_input_fixed"))]
+      (is (= [5 false] (day8/run-program prog 0 0 #{})))
+      (is (= [8 true] (day8/run-program prog-fixed 0 0 #{})))
+      (is (= 8 (day8/fix-program prog)))))
+  (testing "day 8 solutions"
+    (is (= 1179 (day8/day8-part1)))
+    (is (= 1089 (day8/day8-part2)))))
