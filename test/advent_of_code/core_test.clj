@@ -8,7 +8,8 @@
             [advent-of-code.day5 :as day5]
             [advent-of-code.day6 :as day6]
             [advent-of-code.day7 :as day7]
-            [advent-of-code.day8 :as day8]))
+            [advent-of-code.day8 :as day8]
+            [advent-of-code.day9 :as day9]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -85,3 +86,13 @@
   (testing "day 8 solutions"
     (is (= 1179 (day8/day8-part1)))
     (is (= 1089 (day8/day8-part2)))))
+
+(deftest day9-test
+  (testing "day 9 functions"
+    (let [nums (day9/parse-inputs-as-numbers "test_day9_input")
+          preamble-length 5
+          nums-vec (into [] nums)]
+      (is (= 127 (day9/find-first-invalid-number nums preamble-length)))
+      (is (= 62 (day9/find-encryption-weakness nums-vec 127)))))
+  (testing "day 9 solutions"
+    (is (= 776203571 (day9/day9-part1)))))
