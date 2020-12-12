@@ -9,7 +9,8 @@
             [advent-of-code.day6 :as day6]
             [advent-of-code.day7 :as day7]
             [advent-of-code.day8 :as day8]
-            [advent-of-code.day9 :as day9]))
+            [advent-of-code.day9 :as day9]
+            [advent-of-code.day10 :as day10]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -96,3 +97,16 @@
       (is (= 62 (day9/find-encryption-weakness nums-vec 127)))))
   (testing "day 9 solutions"
     (is (= 776203571 (day9/day9-part1)))))
+
+(deftest day10-test
+  (testing "day 10 functions"
+    (is (= 1 (day10/count-possible-combos 1)))
+    (is (= 2 (day10/count-possible-combos 2)))
+    (is (= 4 (day10/count-possible-combos 3)))
+    (is (= 7 (day10/count-possible-combos 4))))
+  (testing "day 10 solutions"
+    (is (= 220 (day10/day10-part1 "test_day10_input")))
+    (is (= 2080 (day10/day10-part1)))
+    (is (= 8 (day10/day10-part2 "test_day10_input_small")))
+    (is (= 19208 (day10/day10-part2 "test_day10_input")))
+    (is (= 6908379398144 (day10/day10-part2)))))
