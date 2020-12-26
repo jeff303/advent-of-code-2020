@@ -10,7 +10,8 @@
             [advent-of-code.day7 :as day7]
             [advent-of-code.day8 :as day8]
             [advent-of-code.day9 :as day9]
-            [advent-of-code.day10 :as day10]))
+            [advent-of-code.day10 :as day10]
+            [advent-of-code.day11 :as day11]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -110,3 +111,15 @@
     (is (= 8 (day10/day10-part2 "test_day10_input_small")))
     (is (= 19208 (day10/day10-part2 "test_day10_input")))
     (is (= 6908379398144 (day10/day10-part2)))))
+
+(deftest day11-test
+  (testing "day 11 functions"
+    (let [small-grid (day11/get-input-grid "test_day11_input")]
+      (is
+        (=
+          '([1 6] [1 8] [3 8] [7 7] [3 6] [2 4])
+          (day11/get-line-of-sight-neighbors small-grid 9 9 2 7)))))
+  (testing "day 11 solutions"
+    (is (= 37 (day11/day11-part1 "test_day11_input")))
+    (is (= 2483 (day11/day11-part1)))
+    (is (= 2285 (day11/day11-part2)))))
