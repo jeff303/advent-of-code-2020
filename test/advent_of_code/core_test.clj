@@ -11,7 +11,8 @@
             [advent-of-code.day8 :as day8]
             [advent-of-code.day9 :as day9]
             [advent-of-code.day10 :as day10]
-            [advent-of-code.day11 :as day11]))
+            [advent-of-code.day11 :as day11]
+            [advent-of-code.day12 :as day12]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -123,3 +124,15 @@
     (is (= 37 (day11/day11-part1 "test_day11_input")))
     (is (= 2483 (day11/day11-part1)))
     (is (= 2285 (day11/day11-part2)))))
+
+(deftest day12-test
+  (testing "day 12 functions"
+    (let [acc {:waypoint {:x -1 :y 5}}]
+      (is (= {:waypoint {:x -5 :y -1}} (day12/rotate-waypoint -90 acc)))
+      (is (= {:waypoint {:x 1 :y -5}} (day12/rotate-waypoint 180 acc)))
+      (is (= {:waypoint {:x 5 :y 1}} (day12/rotate-waypoint 90 acc)))))
+  (testing "day 12 solutions"
+    (is (= 25 (day12/day12-part1 "test_day12_input")))
+    (is (= 2297 (day12/day12-part1)))
+    (is (= 286 (day12/day12-part2 "test_day12_input")))
+    (is (= 89984 (day12/day12-part2)))))
