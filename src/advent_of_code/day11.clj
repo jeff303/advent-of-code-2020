@@ -67,12 +67,11 @@
 
 (defn count-neighbor-seats* [grid get-neighbors-fn seat-pred max-row max-col row col]
   (reduce
-    +
-    (map
-      #(count-seats grid seat-pred %)
-      (get-neighbors-fn grid max-row max-col row col))))
+    (fn [s e] (+ s (count-seats grid seat-pred e)))
+    0
+    (get-neighbors-fn max-row max-col row col)))
 
-(def count-neighbor-seats (memoize count-neighbor-seats*))
+(def count-neighbor-seats count-neighbor-seats*)
 
 (defn input-line-to-grid-row [line]
   (into
@@ -118,7 +117,7 @@
                                (let [impacted-neighbors
                                      (filter
                                        some?
-                                       (get-neighbors-fn grid max-row max-col row col))]
+                                       (get-neighbors-fn max-row max-col row col))]
                                  #(into % impacted-neighbors)))
            check-next (:check-next acc)
            update-fns (:update-fns acc)
@@ -191,7 +190,7 @@
    (day11-part1 "input_day11"))
   ([input-res]
    (let [grid (get-input-grid input-res)
-         [rounds final-grid] (run-until-stable grid get-adjacent-neighbors 4)
+         [rounds final-grid] (run-until-stable grid (memoize (partial get-adjacent-neighbors grid)) 4)
          final-counts (for [i (range 0 (count final-grid))
                             j (range 0 (count (first final-grid)))]
                         (count-seats final-grid #(= :occupied %) [i j]))
@@ -203,7 +202,7 @@
    (day11-part2 "input_day11"))
   ([input-res]
    (let [grid (get-input-grid input-res)
-         [rounds final-grid] (run-until-stable grid (memoize get-line-of-sight-neighbors) 5)
+         [rounds final-grid] (run-until-stable grid (memoize (partial get-line-of-sight-neighbors grid)) 5)
          final-counts (for [i (range 0 (count final-grid))
                             j (range 0 (count (first final-grid)))]
                         (count-seats final-grid #(= :occupied %) [i j]))
