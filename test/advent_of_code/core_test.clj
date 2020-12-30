@@ -12,7 +12,8 @@
             [advent-of-code.day9 :as day9]
             [advent-of-code.day10 :as day10]
             [advent-of-code.day11 :as day11]
-            [advent-of-code.day12 :as day12]))
+            [advent-of-code.day12 :as day12]
+            [advent-of-code.day13 :as day13]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -140,3 +141,16 @@
     (is (= 2297 (day12/day12-part1)))
     (is (= 286 (day12/day12-part2-test)))
     (is (= 89984 (day12/day12-part2)))))
+
+(deftest day13-test
+  (testing "day 13 functions")
+  (testing "day 13 solutions"
+    (is (= 295 (day13/day13-part1-test)))
+    (is (= 4938 (day13/day13-part1)))
+    (is (= 1068781 (day13/day13-part2-test)))
+    (is (= 3417 (day13/day13-part2-test "_part2_extra1")))
+    (is (= 754018 (day13/day13-part2-test "_part2_extra2")))
+    (is (= 779210 (day13/day13-part2-test "_part2_extra3")))
+    (is (= 1261476 (day13/day13-part2-test "_part2_extra4")))
+    (is (= 1202161486 (day13/day13-part2-test "_part2_extra5")))
+    (is (= 230903629977901 (day13/day13-part2)))))
