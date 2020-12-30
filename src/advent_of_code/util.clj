@@ -11,3 +11,23 @@
   [resource-file split-by]
   (with-open [rdr (-> resource-file io/resource io/reader)]
     (str/split (slurp rdr) split-by)))
+
+(defn get-day [ns-sym]
+  (-> ns-sym
+      (resolve)
+      (var-get)
+      (ns-name)
+      (name)
+      (str/split #"\.")
+      (last)))
+
+(defmacro get-day-input [ns-sym]
+  (let [day (get-day ns-sym)]
+    (format "input/%s.txt" day)))
+
+(defmacro get-day-test-input
+  ([ns-sym]
+   `(get-day-test-input ~ns-sym ""))
+  ([ns-sym variant]
+   (let [day (get-day ns-sym)]
+     `(format "test_input/%s%s.txt" ~day ~variant))))

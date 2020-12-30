@@ -1,9 +1,6 @@
 (ns advent-of-code.day8
   (:gen-class)
-  (:require [advent-of-code.util :as util]
-            [clojure.string :as str]
-            [clojure.core.reducers :as r]
-            [clojure.set :as s]))
+  (:require [advent-of-code.util :as util]))
 
 (defn input-line-to-program-inst [input-line]
   (subvec (re-matches #"^([a-z]{3}) (-|\+)(\d+)" input-line) 1))
@@ -11,6 +8,13 @@
 (defn parse-inputs-to-program [res-file]
   (let [input-lines (util/read-problem-input-as-lines res-file)]
     (map input-line-to-program-inst input-lines)))
+
+(defn parse-test-inputs-to-program
+  ([]
+   (parse-test-inputs-to-program ""))
+  ([variant]
+   (parse-inputs-to-program
+     (util/get-day-test-input *ns* variant))))
 
 (defn run-program [program acc pc seen-inst]
   (cond
@@ -33,7 +37,7 @@
         (run-program program acc (acc-fn pc num) new-seen-inst)))))
 
 (defn day8-part1 []
-  (let [prog (into [] (parse-inputs-to-program "input_day8"))]
+  (let [prog (into [] (parse-inputs-to-program (util/get-day-input *ns*)))]
     (first (run-program prog 0 0 #{}))))
 
 (defn fix-program [program]
@@ -56,5 +60,5 @@
             (if finished acc)))))))
 
 (defn day8-part2 []
-  (let [prog (into [] (parse-inputs-to-program "input_day8"))]
+  (let [prog (into [] (parse-inputs-to-program (util/get-day-input *ns*)))]
     (fix-program prog)))

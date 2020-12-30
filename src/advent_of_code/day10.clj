@@ -1,13 +1,10 @@
 (ns advent-of-code.day10
   (:gen-class)
-  (:require [advent-of-code.util :as util]
-            [clojure.string :as str]
-            [clojure.core.reducers :as r]
-            [clojure.set :as s]))
+  (:require [advent-of-code.util :as util]))
 
 (defn parse-inputs-as-numbers
   ([]
-   (parse-inputs-as-numbers "input_day9"))
+   (parse-inputs-as-numbers (util/get-day-input *ns*)))
   ([res-file]
    (let [input-lines (util/read-problem-input-as-lines res-file)]
      (map #(Long. %) input-lines))))
@@ -30,13 +27,16 @@
 
 (defn day10-part1
   ([]
-   (day10-part1 "input_day10"))
+   (day10-part1 (util/get-day-input *ns*)))
   ([input-res]
    (let [sorted-nums (sort (parse-inputs-as-numbers input-res))
          gaps (reduce reduce-by-gap-size [0 0 0 0] sorted-nums)
          [gap-1s _ gap-3s _] gaps] ; increment the 3 gaps to account for this:
                                    ; "your device's built-in adapter is always 3 higher than the highest adapter"
      (* gap-1s (inc gap-3s)))))
+
+(defn day10-part1-test []
+  (day10-part1 (util/get-day-test-input *ns*)))
 
 (def count-possible-combos
   "Counts the number of valid ways to add a consecutive sequence of adapters whose joltage increases by 1"
@@ -74,10 +74,16 @@
 
 (defn day10-part2
   ([]
-   (day10-part2 "input_day10"))
+   (day10-part2 (util/get-day-input *ns*)))
   ([input-res]
    (let [input-nums (parse-inputs-as-numbers input-res)
          all-nums (get-sorted-adapters input-nums)
          combo-acc (reduce reduce-by-valid-combinations {:combos 1 :prev-num 0 :len-1s-run 0} all-nums)]
      ; "your device's built-in adapter is always 3 higher than the highest adapter"
      (:combos combo-acc))))
+
+(defn day10-part2-test
+  ([]
+   (day10-part2-test ""))
+  ([variant]
+   (day10-part2 (util/get-day-test-input *ns* variant))))

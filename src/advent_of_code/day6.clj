@@ -9,8 +9,13 @@
   (let [group-yes-answers (into #{} (r/filter #(not= \newline %) group-input))]
     (count group-yes-answers)))
 
-(defn- parse-input-as-groups []
-  (util/read-problem-input-split-by "input_day6" #"\n\n"))
+(defn- parse-input-as-groups
+  ([] (parse-input-as-groups (util/get-day-input *ns*)))
+  ([input-res]
+   (util/read-problem-input-split-by input-res #"\n\n")))
+
+(defn parse-test-input-as-groups []
+  (parse-input-as-groups (util/get-day-test-input *ns*)))
 
 (defn day6-part1 []
   (let [input-groups (parse-input-as-groups)

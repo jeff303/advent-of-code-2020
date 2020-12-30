@@ -18,9 +18,8 @@
             (> sum target-sum) (recur from (dec to))
             :default [from to]))))))
 
-
 (defn get-input-nums []
-  (let [input-lines (util/read-problem-input-as-lines "input_day1")]
+  (let [input-lines (util/read-problem-input-as-lines (util/get-day-input *ns*))]
     (sort (map #(Integer/parseInt %) input-lines))))
 
 (defn day1-part1 []
@@ -49,14 +48,3 @@
         indexes (three-sum nums 2020)]
     (if (->> indexes first nil? not)
       (reduce * (map #(nth nums %) indexes)))))
-
-;; TODO: figure out how to not have this run from tests
-(let [part1 (day1-part1)
-      part2 (day1-part2)]
-  (doall
-    (keep-indexed
-      (fn [i soln]
-        (if
-          (nil? soln)
-          (prn "No solution to part " (inc i))
-          (prn "Solution to part" (inc i) ": " soln))) [part1 part2])))

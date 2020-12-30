@@ -1,16 +1,17 @@
 (ns advent-of-code.day9
   (:gen-class)
-  (:require [advent-of-code.util :as util]
-            [clojure.string :as str]
-            [clojure.core.reducers :as r]
-            [clojure.set :as s]))
+  (:require [advent-of-code.util :as util]))
 
 (defn parse-inputs-as-numbers
   ([]
-   (parse-inputs-as-numbers "input_day9"))
+   (parse-inputs-as-numbers (util/get-day-input *ns*)))
   ([res-file]
    (let [input-lines (util/read-problem-input-as-lines res-file)]
      (map #(Long. %) input-lines))))
+
+(defn parse-test-inputs-as-numbers []
+  (parse-inputs-as-numbers
+    (util/get-day-test-input *ns*)))
 
 (defn two-sum-from-sorted-set [nums target-sum]
   (first
@@ -42,9 +43,15 @@
                recur-window-sorted (conj (disj window-sorted drop-num) next-num)]
            (find-first-invalid-number recur-num recur-remaining recur-window recur-window-sorted)))))))
 
-(defn day9-part1 []
-  (let [nums (parse-inputs-as-numbers)]
-    (find-first-invalid-number nums 25)))
+(defn day9-part1
+  ([]
+   (day9-part1 (util/get-day-input *ns*) 25))
+  ([input-res preamble-length]
+   (let [nums (parse-inputs-as-numbers input-res)]
+     (find-first-invalid-number nums preamble-length))))
+
+(defn day9-part1-test []
+  (day9-part1 (util/get-day-test-input *ns*) 5))
 
 (defn subseq-sum* [nums from to]
   (reduce + (subvec nums from to)))
@@ -71,7 +78,13 @@
         [min-num max-num] (reduce min-max-reducer [nil nil] s)]
     (+ min-num max-num)))
 
-(defn day9-part2 []
-  (let [nums (into [] (parse-inputs-as-numbers))
-        invalid-num (day9-part1)]
-    (find-encryption-weakness nums invalid-num)))
+(defn day9-part2
+  ([]
+   (day9-part2 (util/get-day-input *ns*) 25))
+  ([input-res preamble-length]
+   (let [nums (into [] (parse-inputs-as-numbers input-res))
+         invalid-num (day9-part1 input-res preamble-length)]
+     (find-encryption-weakness nums invalid-num))))
+
+(defn day9-part2-test []
+  (day9-part2 (util/get-day-test-input *ns*) 5))

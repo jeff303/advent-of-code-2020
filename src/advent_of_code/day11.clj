@@ -1,9 +1,6 @@
 (ns advent-of-code.day11
   (:gen-class)
-  (:require [advent-of-code.util :as util]
-            [clojure.string :as str]
-            [clojure.core.reducers :as r]
-            [clojure.set :as s]))
+  (:require [advent-of-code.util :as util]))
 
 (defn seat-is [grid row col pred]
   (pred
@@ -83,6 +80,9 @@
     (into
       []
       (map input-line-to-grid-row lines))))
+
+(defn get-test-input-grid []
+  (get-input-grid (util/get-day-test-input *ns*)))
 
 (defn row-to-str [row]
   (apply str (map #(case % :occupied \# :unoccupied \L \.) row)))
@@ -187,7 +187,7 @@
 
 (defn day11-part1
   ([]
-   (day11-part1 "input_day11"))
+   (day11-part1 (util/get-day-input *ns*)))
   ([input-res]
    (let [grid (get-input-grid input-res)
          [rounds final-grid] (run-until-stable grid (memoize (partial get-adjacent-neighbors grid)) 4)
@@ -197,9 +197,12 @@
          final-occupied (reduce + final-counts)]
      final-occupied)))
 
+(defn day11-part1-test []
+  (day11-part1 (util/get-day-test-input *ns*)))
+
 (defn day11-part2
   ([]
-   (day11-part2 "input_day11"))
+   (day11-part2 (util/get-day-input *ns*)))
   ([input-res]
    (let [grid (get-input-grid input-res)
          [rounds final-grid] (run-until-stable grid (memoize (partial get-line-of-sight-neighbors grid)) 5)
@@ -208,3 +211,6 @@
                         (count-seats final-grid #(= :occupied %) [i j]))
          final-occupied (reduce + final-counts)]
        final-occupied)))
+
+(defn day11-part2-test []
+  (day11-part2 (util/get-day-test-input *ns*)))

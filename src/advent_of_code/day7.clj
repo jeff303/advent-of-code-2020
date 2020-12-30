@@ -2,8 +2,7 @@
   (:gen-class)
   (:require [advent-of-code.util :as util]
             [clojure.string :as str]
-            [clojure.core.reducers :as r]
-            [clojure.set :as s]))
+            [clojure.core.reducers :as r]))
 
 (defn input-line-to-rule [input-line]
   (let [[_ start-color contain-rules] (re-matches #"(.*) bags contain (.*)" input-line)
@@ -17,11 +16,17 @@
 
 (defn parse-inputs-as-rule-map
   ([]
-   (parse-inputs-as-rule-map "input_day7"))
+   (parse-inputs-as-rule-map (util/get-day-input *ns*)))
   ([res-file]
    (let [input-lines (util/read-problem-input-as-lines res-file)
          individual-rules (r/map input-line-to-rule input-lines)]
      (reduce merge individual-rules))))
+
+(defn parse-test-inputs-as-rule-map
+  ([]
+   (parse-test-inputs-as-rule-map ""))
+  ([variant]
+   (parse-inputs-as-rule-map (util/get-day-test-input *ns* variant))))
 
 (defn target-color-reachable [rules visited-colors start-color target-color]
   (if

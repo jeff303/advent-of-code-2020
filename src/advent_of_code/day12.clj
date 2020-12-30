@@ -20,7 +20,7 @@
 
 (defn parse-input-instructions
   ([]
-   (parse-input-instructions "input_day12"))
+   (parse-input-instructions (util/get-day-input *ns*)))
   ([input-res]
    (let [input-lines (util/read-problem-input-as-lines input-res)]
      (map input-line-to-instruction input-lines))))
@@ -118,16 +118,22 @@
 
 (defn day12-part1
   ([]
-   (day12-part1 "input_day12"))
+   (day12-part1 (util/get-day-input *ns*)))
   ([input-res]
    (let [instructions (parse-input-instructions input-res)
          final-acc (transduce execute-instruction-xf (execute-instruction-rf false) instructions)]
      (get-manhattan-distance final-acc))))
 
+(defn day12-part1-test []
+  (day12-part1 (util/get-day-test-input *ns*)))
+
 (defn day12-part2
   ([]
-   (day12-part2 "input_day12"))
+   (day12-part2 (util/get-day-input *ns*)))
   ([input-res]
    (let [instructions (parse-input-instructions input-res)
          final-acc (transduce execute-instruction-xf (execute-instruction-rf true) instructions)]
      (get-manhattan-distance final-acc))))
+
+(defn day12-part2-test []
+  (day12-part2 (util/get-day-test-input *ns*)))
