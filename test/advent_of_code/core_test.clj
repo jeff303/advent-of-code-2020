@@ -13,7 +13,8 @@
             [advent-of-code.day10 :as day10]
             [advent-of-code.day11 :as day11]
             [advent-of-code.day12 :as day12]
-            [advent-of-code.day13 :as day13]))
+            [advent-of-code.day13 :as day13]
+            [advent-of-code.day14 :as day14]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -154,3 +155,16 @@
     (is (= 1261476 (day13/day13-part2-test "_part2_extra4")))
     (is (= 1202161486 (day13/day13-part2-test "_part2_extra5")))
     (is (= 230903629977901 (day13/day13-part2)))))
+
+(deftest day14-test
+  (testing "day 14 functions"
+    (is (= 73 (day14/apply-bitmasks 11 (day14/get-bitmasks "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X") false)))
+    (let [part2-bms (day14/get-bitmasks "000000000000000000000000000000X1001X" true)
+          float-bits (:float-bits part2-bms)]
+      (is (= [5 0] float-bits))
+      (is (= #{68 69 100 101} (set (day14/permute-all-floating-bits 100 float-bits))))))
+  (testing "day 14 solutions"
+    (is (= 165 (day14/day14-part1-test)))
+    (is (= 6386593869035 (day14/day14-part1)))
+    (is (= 208 (day14/day14-part2-test)))
+    (is (= 4288986482164 (day14/day14-part2)))))
