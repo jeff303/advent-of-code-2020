@@ -14,7 +14,8 @@
             [advent-of-code.day11 :as day11]
             [advent-of-code.day12 :as day12]
             [advent-of-code.day13 :as day13]
-            [advent-of-code.day14 :as day14]))
+            [advent-of-code.day14 :as day14]
+            [advent-of-code.day15 :as day15]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -168,3 +169,18 @@
     (is (= 6386593869035 (day14/day14-part1)))
     (is (= 208 (day14/day14-part2-test)))
     (is (= 4288986482164 (day14/day14-part2)))))
+
+(deftest day15-test
+  (testing "day 15 solutions"
+    (is (= 436 (day15/day15-part1-test)))
+    (is (= 866 (day15/day15-part1)))
+    (is (= 175594 (day15/day15-part2-test "")))
+    ;; commenting these out for now because each takes a long time to run
+    ;(is (= 2578 (day15/day15-part2-test "_variant2")))
+    ;(is (= 3544142 (day15/day15-part2-test "_variant3")))
+    ;(is (= 261214 (day15/day15-part2-test "_variant4")))
+    ;(is (= 6895259 (day15/day15-part2-test "_variant5")))
+    ;(is (= 18 (day15/day15-part2-test "_variant6")))
+    ;(is (= 362 (day15/day15-part2-test "_variant7")))
+    (is (= 1437692 (day15/day15-part2)))))
+
