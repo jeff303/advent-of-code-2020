@@ -15,7 +15,8 @@
             [advent-of-code.day12 :as day12]
             [advent-of-code.day13 :as day13]
             [advent-of-code.day14 :as day14]
-            [advent-of-code.day15 :as day15]))
+            [advent-of-code.day15 :as day15]
+            [advent-of-code.day16 :as day16]))
 
 (deftest day1-test
   (testing "day 1 solutions"
@@ -184,3 +185,7 @@
     ;(is (= 362 (day15/day15-part2-test "_variant7")))
     (is (= 1437692 (day15/day15-part2)))))
 
+(deftest day16-test
+  (testing "day 16 solutions"
+    (is (= 71 (day16/day16-part1 "test_input/day16.txt")))
+    (is (= 22073 (day16/day16-part1)))))
