@@ -188,4 +188,5 @@
 (deftest day16-test
   (testing "day 16 solutions"
     (is (= 71 (day16/day16-part1 "test_input/day16.txt")))
-    (is (= 22073 (day16/day16-part1)))))
+    (is (= 22073 (day16/day16-part1)))
+    (is (= 1346570764607 (day16/day16-part2)))))
